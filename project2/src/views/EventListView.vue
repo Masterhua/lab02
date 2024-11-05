@@ -27,7 +27,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed, watchEffect } from 'vue'
+import { ref, computed, watchEffect, onMounted } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import EventCard from '@/components/EventCard.vue'
 import { type Event } from '@/types'
@@ -54,7 +54,7 @@ const selectedPageSize = ref(route.query.pageSize ? parseInt(route.query.pageSiz
 const page = computed(() => props.page)
 
 const hasNextPage = computed(() => {
-  const totalPages = Math.ceil(totalEvents.value / selectedPageSize.value)
+  const totalPages = Math.ceil(totalEvents.value / 3)
   return page.value < totalPages
 })
 
@@ -62,16 +62,17 @@ const updatePageSize = () => {
   router.push({ name: 'event-list-view', query: { page: 1, pageSize: selectedPageSize.value } })
 }
 
-watchEffect(() => {
-  events.value = null
-  EventService.getEvents(selectedPageSize.value, page.value)
-    .then((response) => {
-      events.value = response.data
-      totalEvents.value = parseInt(response.headers['x-total-count'], 10)
-    })
-    .catch((error) => {
-      console.error('There was an error!', error)
-    })
+onMounted(() => {
+  watchEffect(() => {
+    EventService.getEvents(3, page.value)
+      .then((response) => {
+        events.value = response.data
+        totalEvents.value = parseInt(response.headers['x-total-count'])
+      })
+      .catch((error) => {
+        console.error('There was an error!', error)
+      })
+  })
 })
 </script>
 

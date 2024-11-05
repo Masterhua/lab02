@@ -1,31 +1,11 @@
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
-import { useRouter } from 'vue-router'
-import { type Event } from '@/types'
-import EventService from '@/services/EventService'
 
-const event = ref<Event | null>(null)
-const props = defineProps<{
-  id: string
-}>()
-const router = useRouter()
+import { useEventStore } from '@/stores/event'
+import { storeToRefs } from 'pinia'
 
-onMounted(() => {
-  EventService.getEvent(parseInt(props.id))
-    .then((response) => {
-      event.value = response.data
-    })
-    .catch((error) => {
-      if (error.response && error.response.status === 404) {
-        router.push({
-          name: '404-resource-view',
-          params: { resource: 'event' }
-        })
-      } else {
-        router.push({ name: 'network-error-view' })
-      }
-  })
-})
+const store = useEventStore()
+const { event } = storeToRefs(store)
+
 </script>
 
 <template>
