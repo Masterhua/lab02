@@ -1,11 +1,11 @@
 <template>
   <div>
-    <h1>Student List</h1>
-    <div class="students">
-      <div class="student-card" v-for="student in students" :key="student.id">
-        <h2>{{ student.name }} {{ student.surname }}</h2>
-        <p>GPA: {{ student.gpa }}</p>
-        <p>Description: {{ student.description }}</p>
+    <h1 class="text-4xl font-bold text-center mb-6">Student List</h1>
+    <div class="students flex flex-wrap justify-center">
+      <div class="student-card border border-gray-300 p-5 m-4 rounded-lg w-64 text-center shadow-md" v-for="student in students" :key="student.id">
+        <h2 class="text-xl font-semibold">{{ student.name }} {{ student.surname }}</h2>
+        <p class="text-lg">GPA: {{ student.gpa }}</p>
+        <p class="text-gray-700">Description: {{ student.description }}</p>
       </div>
     </div>
   </div>
@@ -27,27 +27,3 @@ onMounted(() => {
     });
 });
 </script>
-
-<style scoped>
-.students {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
-.student-card {
-  border: 1px solid #ccc;
-  padding: 20px;
-  margin: 10px;
-  border-radius: 8px;
-  width: 250px;
-  text-align: center;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-.student-image {
-  width: 100%;
-  height: auto;
-  border-radius: 50%;
-}
-</style>

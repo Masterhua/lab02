@@ -10,6 +10,12 @@ const { event } = toRefs(props)
 </script>
 
 <template>
-  <p>{{ event.time }} on {{ event.date }} @ {{ event.location }}</p>
-  <p>{{ event.description }}</p>
+  <div class="p-6 max-w-xl mx-auto space-y-4">
+    <p class="text-gray-700 text-lg">
+      {{ event.time }} on {{ event.date }} @ {{ event.location }}
+    </p>
+    <p class="text-gray-600">
+      {{ event.description }}
+    </p>
+  </div>
 </template>

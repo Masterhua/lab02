@@ -7,16 +7,31 @@ const { message } = storeToRefs(store)
 </script>
 
 <template>
-  <div id="layout">
+  <div class="text-center font-sans text-gray-700 antialiased">
     <header>
-      <div id="flashMessage" v-if="message">
+      <div id="flashMessage" class="animate-fade" v-if="message">
         <h4>{{ message }}</h4>
       </div>
       <div class="wrapper">
-        <nav>
-          <RouterLink to="/">Event</RouterLink> |
-          <RouterLink to="/about">About</RouterLink> |
-          <RouterLink to="/students">Students</RouterLink>
+        <nav class="py-6">
+          <RouterLink 
+            class="font-bold text-gray-700" 
+            exact-active-class="text-green-500" 
+            :to="{ name: 'event-list-view' }">
+            Event
+          </RouterLink> |
+          <RouterLink 
+            class="font-bold text-gray-700" 
+            exact-active-class="text-green-500" 
+            :to="{ name: 'about' }">
+            About
+          </RouterLink> |
+          <RouterLink 
+            class="font-bold text-gray-700" 
+            exact-active-class="text-green-500" 
+            :to="{ name: 'student-list-view' }">
+            Students
+          </RouterLink>
         </nav>
       </div>
     </header>
@@ -24,38 +39,3 @@ const { message } = storeToRefs(store)
     <RouterView />
   </div>
 </template>
-
-<style>
-#layout {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-
-nav {
-  padding: 30px;
-}
-
-nav a.router-link-exact-active {
-  color: #42b983;
-}
-
-h2 {
-  font-size: 20px;
-}
-
-@keyframes yellofade {
-  from {
-    background-color: yellow;
-  }
-  to {
-    background-color: transparent;
-  }
-}
-
-#flashMessage {
-  animation: yellofade 3s ease-in-out;
-}
-</style>

@@ -28,17 +28,17 @@ onMounted(() => {
 </script>
 
 <template>
-  <div v-if="event">
-    <div v-if="message" id="flashMessage">
+  <div v-if="event" class="text-center">
+    <div v-if="message" id="flashMessage" class="animate-fade mb-4 p-4 bg-yellow-200 text-yellow-800">
       <h4>{{ message }}</h4>
     </div>
-    <h1>{{ event.title }}</h1>
-    <p>{{ event.time }} on {{ event.date }} @ {{ event.location }}</p>
-    <p>{{ event.description }}</p>
+    <h1 class="text-4xl font-bold mb-4">{{ event.title }}</h1>
+    <p class="text-lg mb-2">{{ event.time }} on {{ event.date }} @ {{ event.location }}</p>
+    <p class="text-gray-700">{{ event.description }}</p>
   </div>
 </template>
 
-<style>
+<style scoped>
 @keyframes yellofade {
   from {
     background-color: yellow;
@@ -47,9 +47,8 @@ onMounted(() => {
     background-color: transparent;
   }
 }
+
 #flashMessage {
   animation: yellofade 3s ease-in-out;
-  padding: 10px;
-  margin-bottom: 10px;
 }
 </style>
