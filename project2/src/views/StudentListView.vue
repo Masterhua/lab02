@@ -15,7 +15,16 @@
 import { ref, onMounted } from 'vue';
 import StudentService from '@/services/StudentService';
 
-const students = ref([]);
+
+interface Student {
+  id: number;
+  name: string;
+  surname: string;
+  gpa: number;
+  description: string;
+}
+
+const students = ref<Student[]>([]);
 
 onMounted(() => {
   StudentService.getStudents()

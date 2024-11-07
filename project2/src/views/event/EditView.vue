@@ -6,8 +6,9 @@ import { type Event } from '@/types'
 
 const props = defineProps<{
   event: Event
-  id: String
+  id: string
 }>()
+
 const { event } = toRefs(props)
 const router = useRouter()
 const store = useMessageStore()
@@ -23,7 +24,7 @@ const handleEdit = () => {
 
 <template>
   <div class="p-6 max-w-xl mx-auto">
-    <p class="text-lg text-gray-700 mb-4">Edit event here</p>
+    <p class="text-lg text-gray-700 mb-4">Edit event: {{ event.title }}</p> <!-- Example of using event -->
     <button 
       @click="handleEdit" 
       class="px-6 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-300 transition">

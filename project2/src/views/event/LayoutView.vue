@@ -11,19 +11,19 @@ const { event } = storeToRefs(store)
     <h1 class="text-3xl font-semibold text-gray-800 mb-4">{{ event.title }}</h1>
     <nav class="mb-6">
       <RouterLink 
-        to="{ name: 'event-detail-view' }" 
+        :to="{ name: 'event-detail-view' }" 
         class="text-blue-500 hover:text-blue-700 mr-4">
         Details
       </RouterLink>
       |
       <RouterLink 
-        to="{ name: 'event-register-view' }" 
+        :to="{ name: 'event-register-view' }" 
         class="text-blue-500 hover:text-blue-700 mr-4">
         Register
       </RouterLink>
       |
       <RouterLink 
-        to="{ name: 'event-edit-view' }" 
+        :to="{ name: 'event-edit-view' }" 
         class="text-blue-500 hover:text-blue-700">
         Edit
       </RouterLink>
@@ -31,3 +31,7 @@ const { event } = storeToRefs(store)
     <RouterView :event="event" />
   </div>
 </template>
+
+<style scoped>
+/* No additional CSS is required as we are using Tailwind CSS */
+</style>
